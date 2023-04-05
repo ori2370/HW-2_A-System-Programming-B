@@ -3,7 +3,6 @@
 
 using namespace std;
 using namespace ariel;
-int Player::next_id = 0;
 
 Player::Player(const string name) : cards_won(0), stack_size(0)
 {
@@ -12,7 +11,7 @@ Player::Player(const string name) : cards_won(0), stack_size(0)
         throw invalid_argument("player must have a name");
     }
     this->player_name = name;
-    id = next_id++;
+    id = getNextId();
 };
 
 int Player::cardesTaken()

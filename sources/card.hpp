@@ -13,7 +13,7 @@ namespace ariel
         string rankToString(int rank) const;
 
     public:
-        Card(){};
+        Card() : rank(0){};
         Card(int rank, string suit);
         string getSuit();
         int getRank() const;

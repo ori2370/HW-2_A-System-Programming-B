@@ -11,7 +11,7 @@ namespace ariel
     {
     public:
         gameSimulator(){};
-        string playTurn(const Card &c1, const Card &c2);
+        string playTurn(const Card &card1, const Card &card2);
     };
 }
 

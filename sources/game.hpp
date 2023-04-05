@@ -13,8 +13,8 @@ namespace ariel
     class Game
     {
     private:
-        Player &p1;
-        Player &p2;
+        Player &player1;
+        Player &player2;
         string last_turn_result;
         gameSimulator turn_oprator;
         vector<string> turn_results;
@@ -24,7 +24,7 @@ namespace ariel
         string playdraw();
         // using player& so it wont create a copy of the players or allocating a new memory for them.
     public:
-        Game(Player &p1, Player &p2); // same goes here..
+        Game(Player &player1, Player &player2); // same goes here..
         void playTurn();
         void printLastTurn();
         void playAll();

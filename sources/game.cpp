@@ -8,7 +8,7 @@
 using namespace std;
 using namespace ariel;
 
-Game::Game(Player &p1, Player &p2) : p1(p1), p2(p2), turn_oprator()
+Game::Game(Player &p1, Player &p2) : player1(p1), player2(p2), turn_oprator()
 {
     if (p1.getid() == p2.getid())
     { // checking by unique if and not name as two persons can have the same name
@@ -53,22 +53,22 @@ void Game::playTurn()
 
     if (turn_result == "p1")
     {
-        last_turn_result = "" + p1.getPlayerName() + " played " + p1_stack.back().toString() + " " + p2.getPlayerName() + " played " + p2_stack.back().toString() + ". " + p1.getPlayerName() + " wins.";
-        p1.addWin();
+        last_turn_result = "" + player1.getPlayerName() + " played " + p1_stack.back().toString() + " " + player2.getPlayerName() + " played " + p2_stack.back().toString() + ". " + player1.getPlayerName() + " wins.";
+        player1.addWin();
         p1_stack.pop_back();
         p2_stack.pop_back();
-        p1.decreaseStackSize();
-        p2.decreaseStackSize();
+        player1.decreaseStackSize();
+        player2.decreaseStackSize();
         turn_results.push_back(last_turn_result);
     }
     else if (turn_result == "p2")
     {
-        last_turn_result = "" + p1.getPlayerName() + " played " + p1_stack.back().toString() + " " + p2.getPlayerName() + " played " + p2_stack.back().toString() + ". " + p2.getPlayerName() + " wins.";
-        p2.addWin();
+        last_turn_result = "" + player1.getPlayerName() + " played " + p1_stack.back().toString() + " " + player2.getPlayerName() + " played " + p2_stack.back().toString() + ". " + player2.getPlayerName() + " wins.";
+        player2.addWin();
         p1_stack.pop_back();
         p2_stack.pop_back();
-        p1.decreaseStackSize();
-        p2.decreaseStackSize();
+        player1.decreaseStackSize();
+        player2.decreaseStackSize();
         turn_results.push_back(last_turn_result);
     }
     else
@@ -76,13 +76,13 @@ void Game::playTurn()
         string result = playdraw();
         if (result == "p1")
         {
-            p1.addWin();
-            p1.addWin();
+            player1.addWin();
+            player1.addWin();
         }
         else if (result == "p2")
         {
-            p2.addWin();
-            p2.addWin();
+            player2.addWin();
+            player2.addWin();
         }
         else if (result == "draw")
         {
@@ -106,13 +106,15 @@ void Game::playAll()
 
 void Game::printWiner()
 {
-    if (p1.cardesTaken() > p2.cardesTaken())
+    if (player1.cardesTaken() > player2.cardesTaken())
     {
-        cout << p1.getPlayerName() << " won the game" << endl;
+        cout << player1.getPlayerName() << " won the game" << endl;
+        player1.setWinner();
     }
-    else if (p1.cardesTaken() < p2.cardesTaken())
+    else if (player1.cardesTaken() < player2.cardesTaken())
     {
-        cout << p2.getPlayerName() << " won the game" << endl;
+        cout << player2.getPlayerName() << " won the game" << endl;
+        player2.setWinner();
     }
     else
     {
